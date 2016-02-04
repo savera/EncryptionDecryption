@@ -22,15 +22,18 @@ public class tests {
 		
 		File file = FileEncryptor.openSecretFile();
 		
-		assertEquals("Hello world ", FileEncryptor.readOneLine(file));
+		assertEquals("Hello world", FileEncryptor.readOneLine(file));
 		
-		assertEquals("Hello world random stuff", FileEncryptor.readFileContents(file));
+		assertEquals("Hello worldrandom stuff", FileEncryptor.readFileContents(file));
 	}
 
+	@Test 
 	/* Create your own encryption algorithm and adjust the asserts. */
 	public void testEncrypt() throws Exception {
-		String encryptMe = "lalala";
-		assertEquals("ncncnc", FileEncryptor.encrypt(encryptMe));
+		
+		String encryptMe = "ababa";
+		
+		assertEquals("bcbcb", FileEncryptor.encrypt(encryptMe));
 	}
 
 	public void testSaveAFile() throws Exception {
