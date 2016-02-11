@@ -9,6 +9,8 @@ import java.io.IOException;
 import java.nio.CharBuffer;
 import java.util.ArrayList;
 
+import javax.print.DocFlavor.CHAR_ARRAY;
+
 public class FileEncryptor {
 
 	public static File openSecretFile() throws IOException {
@@ -57,53 +59,49 @@ public class FileEncryptor {
 	}
 
 	public static Object encrypt(String encryptMe) throws IOException {
-
-		File file = new File("Files/fileTwo"); // creates a file
-
-		FileReader reader = new FileReader(file); // reads the entire file
-
-		FileWriter writer = new FileWriter(file); //writes in the file
-
-		BufferedReader read = new BufferedReader(reader); // reads the file
 		
-		String fileContents = ""; // gets all the files contents and converts them to a String
-	
-		//use a char 
+		String text = encryptMe; // sets encryptMe to text
 		
-		//System.out.println(fileContents);
+		System.out.println(text);
 
-		for (int i = 0; i < fileContents.length(); i++) {
+		text.toLowerCase(); // makes the whole text lower case
 
-			String letter = fileContents.substring(i); // gets one letter
+		String encrypted = "";
 
-			if (letter.equals("a")) { // if the letters is a
+		String newl = "";
 
-				// writes the letter b
-			//	writer.write("b", i, fileContents.length()); 
-				
-				System.out.println("a");
+		char[] l = text.toCharArray(); // puts the letters from the text into the char array
 
-			} else if (letter.equals("b")) { // if the letter is b
+		//System.out.println("Whole array: " + l);
 
-				//writes the letter c
-			//	writer.write("c", i, fileContents.length()); 
-				
-				System.out.println("b");
+		for (char c : l) { // goes through the char array
 
-			}
+			c = (char) (c + 5); // adds on to the char value
+
+					//System.out.println("int+1: " + letter);
+
+			newl = Character.toString(c); // converts the char into a string
+
+					//System.out.println("Letter: " + newl);
+
+			encrypted = encrypted + newl;
 
 		}
 
-		String line = read.readLine(); // reads the line
+		System.out.println("Encrypted: " + encrypted);
 
-		System.out.println(line);
-
-		return line;
+		return encrypted;
 	}
 
-	public static File saveFile(String string) {
+	public static File saveFile(String string) throws IOException {
 
-		return null;
+		File file = new File("Files/fileTwo"); 
+		
+		FileWriter writer = new FileWriter(file);
+		
+		writer.write(string);
+		
+		return file;
 	}
 
 	public static void saveStuffInAFile(String string, File file) {

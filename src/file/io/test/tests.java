@@ -33,17 +33,25 @@ public class tests {
 		
 		String encryptMe = "ababa";
 		
-		assertEquals("bcbcb", FileEncryptor.encrypt(encryptMe));
+		assertEquals("fgfgf", FileEncryptor.encrypt(encryptMe));
 	}
 
+	@Test 
 	public void testSaveAFile() throws Exception {
+		
 		assertTrue(FileEncryptor.saveFile("fileName").isFile());
+		
 	}
-
+	
+	@Test 
 	public void testSaveStuffInFile() throws Exception {
+		
 		File file = new File("file with stuff");
+		
 		FileEncryptor.saveStuffInAFile("stuff", file);
+		
 		assertEquals("stuff", FileEncryptor.readFileContents(file));
+		
 	}
 
 	public void testDecrypt() throws Exception {
