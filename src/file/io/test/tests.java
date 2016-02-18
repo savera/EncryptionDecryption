@@ -46,7 +46,7 @@ public class tests {
 	@Test 
 	public void testSaveStuffInFile() throws Exception {
 		
-		File file = new File("file with stuff");
+		File file = new File("Files/file with stuff");
 		
 		FileEncryptor.saveStuffInAFile("stuff", file);
 		
@@ -54,19 +54,30 @@ public class tests {
 		
 	}
 
+	@Test 
 	public void testDecrypt() throws Exception {
-		String decryptMe = "ncncnc";
-		assertEquals("lalala", FileEncryptor.decrypt(decryptMe));
+		
+		String decryptMe = "fgfgf";
+		
+		assertEquals("ababa", FileEncryptor.decrypt(decryptMe));
 	}
 
+	@Test 
 	public void testEverythingTogether() throws Exception {
+		
 		String secretfileName = "june's secrets";
-		File secretFile = new File(secretfileName);
-		//String stuffToEncrypt = FileEncryptor.readFileContents(secretFile);
-		//String encryptedStuff = FileEncryptor.encrypt(stuffToEncrypt);
-		//FileEncryptor.saveStuffInAFile(encryptedStuff, secretFile);
+		
+		File secretFile = new File("Files/" + secretfileName);
+		
+		String stuffToEncrypt = (String) FileEncryptor.readFileContents(secretFile);
+		
+		String encryptedStuff = "" + FileEncryptor.encrypt(stuffToEncrypt);
+		
+		FileEncryptor.saveStuffInAFile(encryptedStuff, secretFile);
 
-		//assertEquals(stuffToEncrypt, FileEncryptor.decrypt(FileEncryptor.readFileContents(secretFile)));
+		String stuff = (String) FileEncryptor.readFileContents(secretFile); 
+		
+		assertEquals(stuffToEncrypt, FileEncryptor.decrypt(stuff));
 
 		
 	}

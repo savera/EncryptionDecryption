@@ -38,9 +38,7 @@ public class FileEncryptor {
 
 	public static Object readFileContents(File file) throws IOException {
 
-		File file2 = new File("Files/fileOne");
-
-		FileReader reader = new FileReader(file2);
+		FileReader reader = new FileReader(file);
 
 		BufferedReader read = new BufferedReader(reader);
 
@@ -94,28 +92,60 @@ public class FileEncryptor {
 	}
 
 	public static File saveFile(String string) throws IOException {
-
-		File file = new File("Files/fileTwo"); 
+			
+		File file = new File("Files/fileName");
 		
-		FileWriter writer = new FileWriter(file);
+		FileWriter writer = new FileWriter(file); 
 		
 		writer.write(string);
+		
+		writer.close();
 		
 		return file;
 	}
 
-	public static void saveStuffInAFile(String string, File file) {
-
+	public static void saveStuffInAFile(String string, File file) throws IOException {
+		
+		FileWriter writer = new FileWriter(file); 
+		
+		writer.write(string);
+		
+		writer.close();
+		
 	}
 
 	public static Object decrypt(String decryptMe) {
 
-		return null;
+		String text = decryptMe; // sets decryptMe to text
+		
+		System.out.println(text);
+
+		text.toLowerCase(); // makes the whole text lower case
+
+		String decrypted = "";
+
+		String newl = "";
+
+		char[] l = text.toCharArray(); // puts the letters from the text into the char array
+
+		//System.out.println("Whole array: " + l);
+
+		for (char c : l) { // goes through the char array
+
+			c = (char) (c - 5); // subtracts from the char value	
+
+			newl = Character.toString(c); // converts the char into a string
+			
+			decrypted = decrypted + newl;
+
+		}
+
+		System.out.println("Decrypted: " + decrypted);
+
+		return decrypted;
+	
 	}
 
-	public static Object decrypt(Object readFileContents) {
-
-		return null;
-	}
+	
 
 }
